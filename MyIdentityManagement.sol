@@ -22,6 +22,14 @@ contract IdentityManagement {
     constructor() {
         admin = msg.sender;
     }
+function registerIdentity(string memory _identity) external {
+        require(bytes(_identity).length > 0, "Identity cannot be empty");
+        require(!isRegistered[msg.sender], "User is already registered");
 
+        isRegistered[msg.sender] = true;
+        identities[msg.sender] = _identity;
+
+        emit IdentityRegistered(msg.sender, _identity);
+    }
 
 }
