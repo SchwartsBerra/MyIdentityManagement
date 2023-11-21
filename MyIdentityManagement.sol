@@ -32,4 +32,12 @@ function registerIdentity(string memory _identity) external {
         emit IdentityRegistered(msg.sender, _identity);
     }
 
+function updateIdentity(string memory _newIdentity) external onlyRegistered {
+        require(bytes(_newIdentity).length > 0, "Identity cannot be empty");
+
+        identities[msg.sender] = _newIdentity;
+
+        emit IdentityUpdated(msg.sender, _newIdentity);
+    }
+
 }
