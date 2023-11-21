@@ -39,5 +39,11 @@ function updateIdentity(string memory _newIdentity) external onlyRegistered {
 
         emit IdentityUpdated(msg.sender, _newIdentity);
     }
+function getIdentity(address _user) external view returns (string memory) {
+        return identities[_user];
+    }
 
+    function isAdmin() external view returns (bool) {
+        return msg.sender == admin;
+    }
 }
